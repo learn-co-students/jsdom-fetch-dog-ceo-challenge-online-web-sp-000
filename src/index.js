@@ -14,12 +14,26 @@ function fetchBreeds(){
 
 function renderBreeds(json) {
   const ul = document.querySelector('ul');
+  let listItems = [];
 
-  json.message.keys.forEach(breed => {
-  const li = document.createElement('li');
-  li.innerHTML = `<li>${breed} </li>`;
-  ul.appendChild(li);
-  });
+  for (const key in json.message){
+    if (Array.isArray(key)){
+      for (let i = 0; i < key.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = `${json.message[key][i] + " " + key}`;
+        listItems.push(li);
+      }
+
+    } else {
+      const li2 = document.createElement('li');
+      li2.innerHTML = `${key}`;
+      listItems.push(li2);
+    }
+  }
+
+  for (let item of listItems) {
+    ul.appendChild(item);
+  }
 }
 
 function fetchImages(){
@@ -47,4 +61,5 @@ function renderImages(json) {
 
 document.addEventListener('DOMContentLoaded', function() {
   fetchImages();
+  fetchBreeds();
 })
