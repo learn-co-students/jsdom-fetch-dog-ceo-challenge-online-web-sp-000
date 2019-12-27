@@ -17,16 +17,21 @@ function renderBreeds(json) {
   let listItems = [];
 
   for (const key in json.message){
-    if (Array.isArray(key)){
-      for (let i = 0; i < key.length; i++) {
+    if (Array.isArray(json.message[key]) && json.message[key].length > 0){
+      for (let i = 0; i < json.message[key].length; i++) {
         const li = document.createElement('li');
         li.innerHTML = `${json.message[key][i] + " " + key}`;
+        li.id = json.message[key][i];
+        addListener(li);
         listItems.push(li);
-      }
+        }
 
     } else {
       const li2 = document.createElement('li');
       li2.innerHTML = `${key}`;
+      li2.id = json.message[key];
+      addListener(li2);
+      //li2.addEventListener("click", changeColor);
       listItems.push(li2);
     }
   }
@@ -57,6 +62,25 @@ function renderImages(json) {
     imgSrc.innerHTML = `<img src=${image} />`;
     imageContainer.appendChild(imgSrc);
   });
+}
+
+function addListener(toHere){
+  toHere.addEventListener('click', function(e) {
+    e = e || window.event;
+    var target = e.target || e.srcElement,
+  text = target.textContent || target.innerText;
+  changeColor(target);
+
+  }, false);
+}
+
+function changeColor(target){
+
+  if (target.style.color != "gold"){
+    target.style.color = "gold";
+  } else {
+    target.style.color = "black";
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
