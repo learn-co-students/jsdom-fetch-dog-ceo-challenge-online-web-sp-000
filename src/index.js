@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
   fetchImages()
   fetchList()
  
-  document.getElementById("breed-dropdown").addEventListener("click", function(){
+  document.getElementById("breed-dropdown").onchange = function(){
     element = document.getElementsByClassName("dog-list")
     while(element[0]) {
       element[0].parentNode.removeChild(element[0]);
     }
     return fetchList()
-  })
+  }
 })
 
 
