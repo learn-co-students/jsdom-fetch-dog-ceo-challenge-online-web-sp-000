@@ -44,10 +44,40 @@ function addBreedToDOM(name) {
     const breedContainer = document.getElementById('dog-breeds')
     const breedElement = document.createElement('li')
     breedElement.innerHTML = name
+    breedElement.id = name
+    addClickerAction(breedElement);
     breedContainer.appendChild(breedElement)
 }
   
   document.addEventListener('DOMContentLoaded', function() {
-    displayDogImages()
+    displayDogImages();
+    displayDogBreeds();
   })
+
+  function addClickerAction(element) {
+      element.addEventListener('click', function() {
+        if (element.style.color == "red") {
+            element.style.color = "black"
+        }
+        else {
+            element.style.color = "red"
+        }
+      })
+  }
+
+  document.getElementById("breed-dropdown").addEventListener('change', function() {
+    filterByFirstLetter();
+  })
+
+  function filterByFirstLetter() {
+    document.getElementById("dog-breeds").innerHTML = "";
+    displayDogBreeds();
+    let breedsUl = document.getElementById("dog-breeds");
+    let breeds = breedsUl.children;
+    for (breed of breeds) {
+        if (breed.innerText[0] !=  document.getElementById("breed-dropdown").value) {
+            breed.parentNode.removeChild(breed)
+        }
+    };
+  }
   
