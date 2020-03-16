@@ -42,4 +42,14 @@ function changeColor(newBreed) { //how does it know what newBreed is to take in 
     newBreed.target.style.color = "pink"
 }
 
+function selectBreedsStartingWith(letter) {
+    addBreeds(breeds.filter(breed => breed.startsWith(letter)));
+  }
 
+  function addBreedSelectListener() {
+    const breedDropdown = document.querySelector('#breed-dropdown');
+    breedDropdown.addEventListener('change', function(event) {
+      selectBreedsStartingWith(event.target.value);
+    });
+  }
+  
