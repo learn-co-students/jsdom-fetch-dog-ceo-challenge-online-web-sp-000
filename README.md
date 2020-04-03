@@ -8,6 +8,17 @@ This repository includes an `index.html` file that loads an `index.js` file.
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
 ```
 
+function dogCeo() {
+  return fetch("https://dog.ceo/api/breeds/image/random/4")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(json){
+    renderBooks(json)
+    // Use this data inside of `json` to do DOM manipulation
+  })
+
+
 Add JavaScript so that:
 
 - on page load
