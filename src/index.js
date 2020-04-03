@@ -1,3 +1,45 @@
+let breeds = []
+const breedSelect = (e) => {
+  const dogUl = document.querySelector('ul#dog-breeds')
+  dogUl.innerText = ""
+  let dropdownValue = e.target.value
+  filteredBreeds(dropdownValue)
+}
+
+function filteredBreeds(letter){
+  let filter = breeds.filter(breed => breed.startsWith(letter)  )
+   displayBreeds(filter)
+  console.log(filter)
+}
+
+function displayBreeds(filter){
+  let bark = document.getElementById('dog-breeds')
+  filter.forEach(breed => bark.innerHTML += "<li>" + breed + "</li>"  )
+// 1. find ul for the dog array
+// 2. add the filtered list
+// 3.
+
+// function filteredBreeds(letter)
+// let getBreed  = breeds.forEach(breed => breeds.innerHTML += '<li>' {$breed} <'/li>')
+// I want to call the function filteredBreeds in this function
+
+//  document.createElement("img")
+// breeds.forEach(breed => bark.innerHTML+= `<li> ${breed} </li>`)
+
+// innerDog.src =  dogsrc
+// doggo.appendChild(innerDog)
+
+
+}
+
+
+// const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+//
+// const result = words.filter(word => word.length > 6);
+//
+// console.log(result);
+
+
 // console.log('%c HI', 'color: firebrick')
 
 
@@ -32,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(res=> res.json())
     .then( result => {
       let dogResults = result.message
-       let breeds = (Object.keys(dogResults))
+       breeds = (Object.keys(dogResults))
        // console.log(breed)
        let bark = document.getElementById('dog-breeds')
        // let hello = "<li> hello </li>"
@@ -59,13 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // [ 8, 11 ]
 //
       });
-
-    const breedSelect = (e) => {
-        const dogUl = document.querySelector('ul#dog-breeds')
-        dogUl.innerText = ""
-
-
-      }
       // 1. assign what is in the console to a variable
       // let breed = console.log(Object.keys(dogResults))
 
