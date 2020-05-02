@@ -8,56 +8,39 @@ document.addEventListener('DOMContentLoaded', function() {
   const breedList = document.getElementById('dog-breeds');
   fetchDogs();
   fetchBreeds();
+  loadBreeds(breedList);
 });
 
 function addEventListenerToLetterSelect(){
   const letterSelectEl = document.getElementById("breed-dropdown");
-  //! below will have to not just load breeds
-  letterSelectEl.addEventListener('change', loadBreeds);
+  //breeds have already been loaded onto page once on page load
+  letterSelectEl.addEventListener('change', loadBreeds(breeds));
 };
 
 function loadBreeds (breeds) {
-  // get all breeds object
-  //let breedsObject = fetchBreeds();
-  //debugger
-  // set variable for value of dropdown id (letter)
+  
+  // filterBreeds before they are loaded as an argument
   const dropdownLetter = document.getElementById("breed-dropdown").value;
   console.log(dropdownLetter);
-  // remove elements that are not filtered
   let parent = document.getElementById('dog-breeds');
   removeChildElements(parent);
-
   for (const key in breeds) {
     let childLi = document.createElement('li');
     childLi = document.createElement('li');
-    debugger
-    childLi.value = key;
-    //! Why in debugger is key the breed name, but it cannot be be assigned to childLi. 
-    //! Once it is appended, the value is "0"
+    childLi.innerText = key;
     parent.appendChild(childLi);
   }
-  // filter all breeds object
-  // let filteredObj = function filterByLetter(breeds) {
-  //   for (const key in breeds)
-  //   debugger
-  //     if ((key.startsWith(dropdownLetter)) == false) {
-  //       delete breeds.key
-  //     };
-  //   return breeds;
-  // };
-  //renderBreeds(filteredObj(breeds));
-
-  console.log(breeds);
-  return breeds;
 };
 
-// function filterBreeds(loadBreeds(event)) {
+function filterBreeds(){
+  // console.log(event);
+  // debugger;
   // use event target value
   // grab letter value
 
-  //update list
-//   console.log(breeds);
-// }
+  // update list
+  // console.log(breeds);
+};
 
 function removeChildElements(parent) {
   while (parent.hasChildNodes()) {  
