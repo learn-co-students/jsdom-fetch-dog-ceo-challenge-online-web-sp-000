@@ -1,27 +1,21 @@
 
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4";
 const breedUrl = 'https://dog.ceo/api/breeds/list/all';
-
+let breeds = {};
 
 
 document.addEventListener('DOMContentLoaded', function() {
   const breedList = document.getElementById('dog-breeds');
   fetchDogs();
   fetchBreeds();
-  loadBreeds(breedList);
 });
 
 function addEventListenerToLetterSelect(){
   const letterSelectEl = document.getElementById("breed-dropdown");
-  //breeds have already been loaded onto page once on page load
-  letterSelectEl.addEventListener('change', loadBreeds(breeds));
+  letterSelectEl.addEventListener('change', filterBreeds);
 };
 
 function loadBreeds (breeds) {
-  
-  // filterBreeds before they are loaded as an argument
-  const dropdownLetter = document.getElementById("breed-dropdown").value;
-  console.log(dropdownLetter);
   let parent = document.getElementById('dog-breeds');
   removeChildElements(parent);
   for (const key in breeds) {
@@ -33,13 +27,15 @@ function loadBreeds (breeds) {
 };
 
 function filterBreeds(){
-  // console.log(event);
-  // debugger;
-  // use event target value
-  // grab letter value
-
-  // update list
-  // console.log(breeds);
+  const dropdownLetter = document.getElementById("breed-dropdown").value;
+  
+  let filteredBreeds = Object.assign({}, breeds);
+  for (const key in filteredBreeds) {
+    if ( !(key.startsWith(dropdownLetter))) {
+      delete filteredBreeds[key];
+    };
+  }
+  loadBreeds(filteredBreeds);
 };
 
 function removeChildElements(parent) {
@@ -69,9 +65,7 @@ function fetchBreeds() {
     .then(resp => resp.json())
     .then(resp => { 
       renderBreeds(resp.message);
-      loadBreeds(resp.message);
-    });  
-    
+    });    
 }
 
 function renderDogs(imageSourceArray) {
@@ -89,6 +83,7 @@ function renderDogs(imageSourceArray) {
      let newBreedEl = document.createElement('li');
      newBreedEl.innerHTML = key;
      breedContainer.appendChild(newBreedEl);
+     breeds[key] = "";
    }
    addEventListenerToBreedList();
    addEventListenerToLetterSelect();
