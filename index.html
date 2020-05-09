@@ -5,25 +5,58 @@
     <title>Intro to AJAX Practice Tasks</title>
     <script src="src/index.js" charset="utf-8"></script>
   </head>
+
+
+  <style type="text/css">
+    .responsive {
+      width: 100%;
+      height: auto;
+    }
+
+    .column {
+      float: left;
+      width: 30%;
+      padding: 10px;
+      height: 300px; /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+  </style>
   <body>
     <h1>Dog CEO</h1>
 
-    <div id="dog-image-container">
+    <div id="dog-image-container" style="margin-left: 25px;">
       <!-- images here -->
     </div>
 
     <hr>
     <label for="select-breed">Filter Breeds That Start with:</label>
-    <select id="breed-dropdown" name="select-breed">
-      <option value="a">a</option>
-      <option value="b">b</option>
-      <option value="c">c</option>
-      <option value="d">d</option>
-    </select>
+      <select id="breed-dropdown" name="select-breed">
+      </select>
 
-    <ul id="dog-breeds">
 
-    </ul>
+      <div class="row">
+        <div id="col1" class="column">
+          <ul id="dog-breeds1">
+
+          </ul>
+        </div>
+        <div id="col2" class="column">
+          <ul id="dog-breeds2">
+          </ul>
+        </div>
+        <div id="col3" class="column">
+          <ul id="dog-breeds3">
+          </ul>
+        </div>
+      </div>
+
 
   </body>
 </html>
