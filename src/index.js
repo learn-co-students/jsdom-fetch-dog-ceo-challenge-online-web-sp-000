@@ -33,7 +33,6 @@ function fetchDogBreeds() {
 function renderDogBreeds(json) {
   let breeds = json.message;
   let breedsList = document.getElementById('dog-breeds');
-  console.log(json); // REMOVE THIS
   for (const key in breeds) {
     if (breeds[key].length > 0) {
       let newItem = document.createElement('li');
@@ -56,4 +55,21 @@ function renderDogBreeds(json) {
 document.addEventListener('DOMContentLoaded', function() {
   fetchDogImages();
   fetchDogBreeds();
+  let breedSelector = document.getElementById('breed-dropdown');
+  breedSelector.addEventListener('change', () => {
+    updateDogBreeds(breedSelector.value);
+  })
 })
+
+function updateDogBreeds(firstLetter) {
+  const breedsList = document.getElementById('dog-breeds');
+  let breeds = breedsList.getElementsByTagName('li');
+  
+  // Go through each list item, and if the first letter in the
+  // bullet does not match firstLetter, hide it
+  for (let element of breeds) {
+    if (element.innerText.charAt(0) != firstLetter) {
+      element.style.display = 'none';
+    }
+  }
+}
