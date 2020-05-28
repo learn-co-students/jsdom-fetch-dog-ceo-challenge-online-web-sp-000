@@ -42,6 +42,12 @@ function renderDogBreeds(json) {
         newItem.innerText += `${element}, `;
       }
       newItem.innerText = newItem.innerText.slice(0, -2);
+
+      // If a user clicks on an LI, turn the text blue
+      newItem.addEventListener('click', () => {
+        newItem.style.color = "blue";
+      });
+
       breedsList.appendChild(newItem);
     }
   }
