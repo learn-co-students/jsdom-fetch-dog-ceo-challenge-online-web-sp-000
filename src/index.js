@@ -55,34 +55,34 @@ function selectBreed(char) { // A function that uses our renderDogBreeds functio
 }
 
 function dropDownTool(){
-    let dropdown = document.querySelector('#breed-dropdown'); // We set a var 
-    dropdown.addEventListener('change', function (event) {
-        selectBreed(event.target.value);
+    let dropdown = document.querySelector('#breed-dropdown'); // We set a var equal to our drop down list
+    dropdown.addEventListener('change', function (event) { // We add an event listener that will utilize the selectBreed function...
+        selectBreed(event.target.value);// ...to update according to the value the user selects from the drop down list.
     });
 }
 
-function genCharArray(charA, charZ) {
+function genCharArray(charA, charZ) { // We create an empty array and two vars equal to the character code of the string's letter
     var a = [], i = charA.charCodeAt(0), j = charZ.charCodeAt(0);
-    for (; i <= j; ++i) {
-        a.push(String.fromCharCode(i));
+    for (; i <= j; ++i) { // We run a for comparing the code values, and if the first value is less than or equal to the second value...
+        a.push(String.fromCharCode(i));// We push it into our array as a string. This is great for making an alphabet array.
     }
-    return a;
+    return a; // After the cycle is broken, we return our array with its new values
 }
 
 function addCharToSelect(){
-    const newLetters = genCharArray('e','z')
+    const newLetters = genCharArray('e','z') // We set var equal to our function with the arguments of 'e' and 'z' (since we already have 'a'-'d' as options in our drop down)
     
-    for(const element of newLetters){
-        let dropDown = document.querySelector('#breed-dropdown');
-        const option = document.createElement('option')
-        option.innerText = element;
-        dropDown.appendChild(option);
+    for(const element of newLetters){ // We iterate over the array created from our function above...
+        let dropDown = document.querySelector('#breed-dropdown'); // Set var equal to our drop down menu
+        const option = document.createElement('option') // Set var equal to an 'option' element
+        option.innerText = element; // Pass in the current element of the array as our option's inner text
+        dropDown.appendChild(option); // Finally, add this new option element to our drop down menu
     }
 
 
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { // This event listen calls 3 functions to execute as soon as the DOM loads
     fetchDogPics();
     fetchDogBreeds();
     addCharToSelect();
