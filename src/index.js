@@ -1,12 +1,24 @@
 console.log('%c HI', 'color: firebrick')
 
-let breedDropdown = document.querySelector("#breed-dropdown")
+// let breedDropdown = document.querySelector("#breed-dropdown")
 
 document.addEventListener('DOMContentLoaded', () => {
     getDogs();
     allDogs();
+    let breedDropdown = document.querySelector("#breed-dropdown")
+    dropDownArray = [...Array(26)].reduce(a => a + String.fromCharCode(i++), '', i = 97).split("");
+    dropDownArray.shift();
+    dropDownArray.shift();
+    dropDownArray.shift();
+    dropDownArray.shift();
+    for(let i = 0; i < dropDownArray.length; i++) {
+        let opt = document.createElement('option');
+        opt.innerText = dropDownArray[i];
+        breedDropdown.appendChild(opt);
+    }
+
     document.addEventListener('click', changeColor);
-    breedDropdown.addEventListener('onChange', filterDogs);
+    breedDropdown.addEventListener('change', filterDogs);
 })
 
 
@@ -23,7 +35,7 @@ function getDogs(){
         })
 }
 
-const breeds = [];
+let breeds = [];
 
 function allDogs() {
     fetch('https://dog.ceo/api/breeds/list/all')
@@ -32,12 +44,7 @@ function allDogs() {
             console.log('allDogs', Object.keys(data.message));
             breeds = Object.keys(data.message);
             for (const breed of breeds) {
-                console.log('breed', breed);
                     addBreed(breed);
-                    // let li = document.createElement("li");
-                    // li.innerText = breed;
-                    // let ul = document.getElementById("dog-breeds");
-                    // ul.appendChild(li);
             }
         })
 }
@@ -48,15 +55,6 @@ function changeColor(element) {
     }
 }
 
-// function showBreeds(letter) {
-//     // let dogs = ??;
-//     for(let i = 0; i < //length of dog names array ; i++) {
-//         if(dogs[i] === letter) {
-//             // show dog name
-//         }
-//     }
-// }
-
 function addBreed(breed) {
     let li = document.createElement("li");
     li.innerText = breed;
@@ -65,8 +63,16 @@ function addBreed(breed) {
 }
 
 function filterDogs(event) {
-    console.log("hello");
-    console.log(event.target.value);
+    let ul = document.getElementById("dog-breeds");
+    while (ul.hasChildNodes()) {
+        ul.removeChild(ul.firstChild);
+    }
+
+    for(let i = 0; i < breeds.length; i++) {
+        if (breeds[i].charAt(0) === event.target.value){
+            addBreed(breeds[i])
+        }
+    }
 }
 
 
