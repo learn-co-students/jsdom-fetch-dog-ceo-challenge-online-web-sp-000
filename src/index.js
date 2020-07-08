@@ -45,13 +45,13 @@ function changeColor(element) {
     }
 }
 
-function showBreeds(letter) {
-    let dogs = ??;
-    for(let i = 0; i < //length of dog names array ; i++) {
-        if(dogs[i] === letter) {
-            // show dog name
-        }
-    }
-}
+// function showBreeds(letter) {
+//     let dogs = ??;
+//     for(let i = 0; i < //length of dog names array ; i++) {
+//         if(dogs[i] === letter) {
+//             // show dog name
+//         }
+//     }
+// }
 
 
