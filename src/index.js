@@ -13,9 +13,9 @@ function loadImages() {
       });
   }
 
-function addImage(json) {
-  let images = document.getElementById('dog-image-container');
-  let newObject = document.createElement('img');
-  json.forEach(newObject =>
-      images.appendChild(newObject)
-)}
+  function addImage(dogPicUrl) {
+    let container = document.querySelector('#dog-image-container');
+    let newImageEl = document.createElement('img');
+    newImageEl.src = dogPicUrl;
+    container.appendChild(newImageEl);
+  }
