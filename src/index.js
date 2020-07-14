@@ -1,21 +1,21 @@
 console.log('%c HI', 'color: firebrick')
 
 document.addEventListener('DOMContentLoaded', function(){
-    fetchImages()
+    loadImages();
 })
 
-function fetchImages() {
-    fetch("https://dog.ceo/api/breeds/image/random/4")
-    .then(resp => resp.json())
-    .then(json => renderImages(json))
+function loadImages() {
+    const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
+    fetch(imgUrl)
+      .then(res=> res.json())
+      .then(results => {
+        results.message.forEach(image => addImage(image))
+      });
+  }
 
-}
-
-function renderImages(json) {
-  const images = document.getElementById('dog-image-container')
-//   json.forEach(book => {
-//     const h2 = document.createElement('h2')
-//     h2.innerHTML = `<h2>${book.name}</h2>`
-//     main.appendChild(h2)
-  })
-}
+function addImage(json) {
+  let images = document.getElementById('dog-image-container');
+  let newObject = document.createElement('img');
+  json.forEach(newObject =>
+      images.appendChild(newObject)
+)}
