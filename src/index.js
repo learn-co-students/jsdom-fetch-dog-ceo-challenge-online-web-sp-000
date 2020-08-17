@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
         let drop = document.querySelector("#breed-dropdown");
-        drop.addEventListener("click", function() {
+        drop.addEventListener("change", function() {
             let dropVal = drop.options[drop.selectedIndex].value;
             let arr = nextDogBreedArea.getElementsByTagName("li");
             for (let i = 0; i < arr.length; i++) {
