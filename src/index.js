@@ -17,6 +17,38 @@ function fetchImages() {
     main.appendChild(newImage); 
   }
   
+
+  function fetchBreeds(){
+    const breedUrl = 'https://dog.ceo/api/breeds/list/all'
+
+    fetch(breedUrl)
+      .then(resp => resp.json())
+      .then(json => {
+        const breeds = [];
+        for (const [key, value] of Object.entries(json.message)) {
+            if (value.length){
+                for (let i = 0; i < value.length; i++){
+                    breeds.push(value[i] + ' ' + key );
+                }
+            } else {
+                breeds.push(key); 
+            }
+        }
+        breeds.forEach(breed => addBreed(breed))});
+
+  }
+
+
+  function addBreed(breed){
+    const main = document.getElementById('dog-breeds')
+    const newBreed = document.createElement('li')
+    newBreed.innerHTML = breed;
+    main.appendChild(newBreed); 
+  }
+
+
+
   document.addEventListener('DOMContentLoaded', function() {
-    fetchImages()
+    fetchImages();
+    fetchBreeds();
   })
