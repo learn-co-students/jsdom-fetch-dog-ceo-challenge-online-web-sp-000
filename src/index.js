@@ -55,12 +55,29 @@ function fetchImages() {
           e.target.style.color = "green";
       }
     });
-}
+  }
 
+
+
+  function filterBreedsByLetter(){
+
+    const all_breeds = document.getElementById("dog-breeds")
+    const filteredBreed = document.getElementById("breed-dropdown")
+
+    debugger; 
+    filteredBreed.addEventListener('change', function(e) {
+      for (let i = 0; i < all_breeds.length; i++){
+        if (all_breeds[i].charAt[0] != e.target.charAt[0]){
+          all_breeds[i].style.display = 'none';
+        }
+      }      
+    });
+  }
 
 
   document.addEventListener('DOMContentLoaded', function() {
     fetchImages();
     fetchBreeds();
     selectBreed();
+    filterBreedsByLetter();
   })
