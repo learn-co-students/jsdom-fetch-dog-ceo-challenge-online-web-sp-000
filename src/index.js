@@ -48,7 +48,19 @@ function fetchImages() {
 
 
 
+  function selectBreed(){
+
+    document.getElementById("dog-breeds").addEventListener("click", function(e) {
+      if(e.target && e.target.nodeName == "LI") {
+          e.target.style.color = "green";
+      }
+    });
+}
+
+
+
   document.addEventListener('DOMContentLoaded', function() {
     fetchImages();
     fetchBreeds();
+    selectBreed();
   })
