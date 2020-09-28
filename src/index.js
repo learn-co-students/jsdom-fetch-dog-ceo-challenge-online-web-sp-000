@@ -81,15 +81,13 @@ function fetchImages() {
 
     // If element starting letter inside all-breeds does not match, then switch style.display of element to 'none'
 
-    // fetchBreeds();
-
     const ul = document.getElementById("dog-breeds")
     const all_breeds = ul.getElementsByTagName("li")
     const filteredBreed = document.getElementById("breed-dropdown")
 
-
     filteredBreed.addEventListener('change', function(e) {
       for (let i = 0; i < all_breeds.length; i++){
+        all_breeds[i].style.display = 'block'
         if (all_breeds[i].innerText[0] != e.target.value){
           all_breeds[i].style.display = 'none';
         }
