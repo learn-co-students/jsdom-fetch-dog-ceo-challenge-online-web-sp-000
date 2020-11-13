@@ -64,7 +64,7 @@ function selectBreedsByLetter(letter) {
     const breeds = getBreedsListByLis();
     const newList = []
     for (const name of breeds) {
-        if name.charAt(0) == letter {
+        if (name.charAt(0) == letter) {
             newList.push(name);
         }
     }
@@ -76,4 +76,4 @@ function  breedDropDownListener() {
     breedDropdown.addEventListener('change', function (event) {
       selectBreedsByLetter(event.target.value);
     });
-  }
+}
