@@ -1,7 +1,14 @@
 window.addEventListener('DOMContentLoaded', () => {
     fetchImage()
-    fetchBreed()  
-});
+    fetchBreed()
+    const lis= document.getElementsByTagName("li")
+    
+    lis.forEach(li=> {
+        li.addEventListener("click",()=>{
+            li.style.color = "red"
+        })  
+    })
+})
 
 function fetchImage(){ 
     fetch("https://dog.ceo/api/breeds/image/random/4")
@@ -26,7 +33,22 @@ function fetchBreed(){
 
 function addBreed(json){
     const ul = document.getElementById("dog-breeds")
-    debugger
+
+    for (const [key, value] of Object.entries(json.message)) {
+   
+        const li = document.createElement("li")
+        li.innerText = key
+        const subUl = document.createElement("ul")
+        for(const element of value){
+            const subLi = document.createElement("li")
+            subLi.innerText = element
+            subUl.appendChild(subLi)
+        }
+
+        li.appendChild(subUl)
+        ul.appendChild(li)
+      }
+     
 
 
 }
