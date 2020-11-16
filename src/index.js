@@ -16,29 +16,23 @@ function fetchBreed() {
 
 function renderImages(json) {
     const dogImgContainer = document.querySelector("#dog-image-container");
-    let imgCounter = 0;
-    debugger;
+    //  debugger;
     Object.keys(json.message).forEach(dogImgKey => {
-        if (dogImgKey == "message") {
-            const img = document.createElement("img");
-            img.src = json[dogImgKey][imgCounter];
-            img.alt = "Image of a dog";
-            dogImgContainer.appendChild(img);
-            imgCounter++;
-        }
+        const img = document.createElement("img");
+        img.src = json.message[dogImgKey];
+        img.alt = "Image of a dog";
+        dogImgContainer.appendChild(img);
     })
 }
 
 function renderBreeds(json) {
     const dogBreedsList = document.querySelector("#dog-breeds");
-    let breedCounter = 0;
     //  debugger;
     Object.keys(json.message).forEach(dogBreedKey => {
         if (json.message[dogBreedKey].length > 0) {
             const li = document.createElement("li");
             li.innerText = json.message[dogBreedKey];
             dogBreedsList.appendChild(li);
-            breedCounter++;
         }
     })
 }
