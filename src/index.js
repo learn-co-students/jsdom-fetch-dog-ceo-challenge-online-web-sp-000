@@ -9,11 +9,15 @@ function fetchImage() {
 
 function renderImages(json) {
    const dogImgContainer = document.querySelector("#dog-image-container");
-   Object.keys(json).forEach(dogImg => {
-      const img = document.createElement("img");
-      img.src = dogImg.src;
-      img.alt = "Image of a dog";
-      dogImgContainer.appendChild(img);
+   Object.keys(json).forEach(dogImgKey => {
+      if (dogImgKey == "message") {
+         let imgCounter = 1;
+         const img = document.createElement("img");
+         img.src = json[dogImgKey][imgCounter];
+         img.alt = "Image of a dog";
+         dogImgContainer.appendChild(img);
+         imgCounter++;
+      }
    })
 }
 
