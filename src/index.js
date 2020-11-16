@@ -45,8 +45,52 @@ function changeBreedColorOnClick() {
     })
 }
 
+function filterBreedsByName() {
+    const breedDropdown = document.querySelector("#breed-dropdown");
+    breedDropdown.addEventListener("change", function(event) {
+        //   debugger;
+        const breedList = document.querySelector("#dog-breeds");
+        //   debugger;
+        if (event.target.children[0].selected) {
+            // Filter all breeds starting with 'a'
+            displaySelectedBreeds(breedList, "a");
+        } else if (event.target.children[1].selected) {
+            // Filter all breeds starting with 'b'
+            displaySelectedBreeds(breedList, "b");
+        } else if (event.target.children[2].selected) {
+            // Filter all breeds starting with 'c'
+            displaySelectedBreeds(breedList, "c");
+        } else {
+            // Filter all breeds starting with 'd'
+            displaySelectedBreeds(breedList, "d");
+        }
+    })
+}
+
+function displaySelectedBreeds(breeds, letter) {
+    let filteredBreeds = [];
+    for (let i = 0; i < breeds.children.length; i++) {
+        if (breeds.children[i].innerText.startsWith(letter)) {
+            filteredBreeds.push(breeds.children[i]);
+        }
+    }
+    breeds.innerHTML = "";
+
+    //  debugger;
+    //  breeds.replaceChildren(filteredBreeds.keys);
+    //  breeds.innerHTML = "";
+    //  // Display filtered dog breeds
+    for (const breed of filteredBreeds) {
+        const li = document.createElement("li");
+        li.className = "filtered-breed";
+        li.innerText = breed.innerText;
+        breeds.appendChild(li);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
-    fetchImage();
+    //  fetchImage();
     fetchBreed();
     changeBreedColorOnClick();
+    filterBreedsByName();
 })
