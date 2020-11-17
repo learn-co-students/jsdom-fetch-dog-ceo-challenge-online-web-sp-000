@@ -74,18 +74,16 @@ function displaySelectedBreeds(breeds, letter) {
             filteredBreeds.push(breeds.children[i]);
         }
     }
-    breeds.innerHTML = "";
-
-    //  debugger;
-    //  breeds.replaceChildren(filteredBreeds.keys);
-    //  breeds.innerHTML = "";
-    //  // Display filtered dog breeds
-    for (const breed of filteredBreeds) {
-        const li = document.createElement("li");
-        li.className = "filtered-breed";
-        li.innerText = breed.innerText;
-        breeds.appendChild(li);
-    }
+    // Create new ul for filtered dog breeds
+    const filteredList = document.createElement("ul");
+    filteredList.id = "filtered-breeds";
+    filteredBreeds.forEach (breed => {
+        filteredList.appendChild(breed);
+    });
+    // Hide breeds list and show filtered breeds
+    breeds.hidden = true;
+    breeds.parentNode.insertBefore(filteredList, breeds);
+    // breeds.parentNode.insertBefore(filteredList, breeds);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
