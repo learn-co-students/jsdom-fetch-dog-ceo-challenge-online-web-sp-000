@@ -74,47 +74,30 @@ function filterBreedsByName() {
 
 function displaySelectedBreeds(breeds, letter) {
     let filteredBreeds = [];
-    // for (let i = 0; i < breeds.children.length; i++) {
-    //     if (breeds.children[i].innerText.startsWith(letter)) {
-    //         filteredBreeds.push(breeds.children[i]);
-    //     }
-    // }
     for (let i = 0; i < breeds.length; i++) {
         if (breeds[i].startsWith(letter)) {
             filteredBreeds.push(breeds[i]);
         }
     }
-    // breeds.forEach(breed => {
-    //         breeds.removeChild(breed);
-    //     })
-    // let child = breeds.lastElementChild;
-    // while (child) {
-    //     breeds.removeChild(child);
-    //     child = breeds.lastElementChild;
-    // }
-    // Create new ul for filtered dog breeds
-    const filteredList = document.createElement("ul");
-    let li = document.createElement("li");
-    filteredList.id = "filtered-breeds";
-    filteredBreeds.forEach(breed => {
-        li.innerText = breed;
-        filteredList.appendChild(li);
-    });
-    debugger;
-    let breeds = document.querySelector("#dog-breeds");
-    while (breeds.lastElementChild) {
-        breeds.removeChild(breeds.lastElementChild);
-        child = breeds.lastElementChild;
+
+    // Remove current dog breeds from the page
+    let dogBreeds = document.querySelector("#dog-breeds");
+    while (dogBreeds.lastElementChild) {
+        dogBreeds.removeChild(dogBreeds.lastElementChild);
+        child = dogBreeds.lastElementChild;
     }
 
-    // Hide breeds list and show filtered breeds
-    // breeds.hidden = true;
-    // breeds.parentNode.insertBefore(filteredList, breeds);
-    // breeds.parentNode.insertBefore(filteredList, breeds);
+    // Append filtered out dog breeds to the page
+    let li;
+    filteredBreeds.forEach(breed => {
+        li = document.createElement("li");
+        li.innerText = breed;
+        dogBreeds.appendChild(li);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // fetchImage();
+    fetchImage();
     fetchBreed();
     changeBreedColorOnClick();
     filterBreedsByName();
