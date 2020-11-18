@@ -35,3 +35,6 @@ function appendBreeds(breed){
     container.appendChild(dogBreed);
 }
 
+function colorChange(){
+    
+}
