@@ -101,12 +101,12 @@ function displaySelectedBreeds(breeds, letter) {
         filteredList.appendChild(li);
     });
     debugger;
-    let dogBreedList = document.querySelector("#dog-breeds");
-    let child = dogBreedList.lastElementChild;
-    while (child) {
-        dogBreedList.removeChild(child);
-        child = dogBreedList.lastElementChild;
+    let breeds = document.querySelector("#dog-breeds");
+    while (breeds.lastElementChild) {
+        breeds.removeChild(breeds.lastElementChild);
+        child = breeds.lastElementChild;
     }
+
     // Hide breeds list and show filtered breeds
     // breeds.hidden = true;
     // breeds.parentNode.insertBefore(filteredList, breeds);
