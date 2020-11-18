@@ -24,13 +24,14 @@ function fetchBreeds(){
     fetch("https://dog.ceo/api/breeds/list/all")
     .then(response => response.json())
     .then(breeds => {
-        breeds.message.forEach(breed => appendBreeds(breed))
+        Object.keys(breeds.message).forEach(breed => appendBreeds(breed))
     });
 }
 
 function appendBreeds(breed){
     const container = document.querySelector('#dog-breeds');
     const dogBreed = document.createElement("li");
-    dogBreed.innerHTML = breed 
+    dogBreed.innerHTML = breed
     container.appendChild(dogBreed);
 }
+
