@@ -53,9 +53,6 @@ function changeBreedColorOnClick() {
 function filterBreedsByName() {
     const breedDropdown = document.querySelector("#breed-dropdown");
     breedDropdown.addEventListener("change", function(event) {
-        //   debugger;
-        // const breedList = document.querySelector("#dog-breeds");
-        //   debugger;
         if (event.target.children[0].selected) {
             // Filter all breeds starting with 'a'
             displaySelectedBreeds(dogBreedStrings, "a");
