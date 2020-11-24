@@ -2,7 +2,7 @@ console.log('%c HI', 'color: firebrick')
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
 const breedUrl = 'https://dog.ceo/api/breeds/list/all'
 const breedDropdown = Document.getElementById('breed-dropdown')
-// const selectDropdown = selectDropdown.addEventListener("change", (e) => console.log("#breed-dropdown"));
+const allBreeds = []
 
 document.addEventListener('DOMContentLoaded', function(){
     fetchImages()
@@ -42,6 +42,30 @@ function addBreeds(json){
     };
 }
 
-    // selectDropdown.addEventListener("change", (e) => 
-    // li.map(letter));
-    // console.log(li);
+function addBreeds(json){
+    const body = document.querySelector('body')
+    const ul = document.querySelector('#dog-breeds')
+    createBreedList(json.message)
+    // for (const key in json.message) {
+    //     const li = document.createElement('li')
+    //     li.innerText = `${key}`
+    //     li.addEventListener("click", (e) => e.target.style.color = "red")
+    //     ul.appendChild(li)
+    // };
+}
+
+breedDropdown.addEventListener("change", (e) => {
+    const letter = e.target.value //letter equals the target value of the function
+
+    const selectedBreeds = allBreeds.filter(breed => breed.startsWith(letter)) //filter the dog breeds
+
+    ul.innerHTML = createBreedList(selectedBreeds) // create list using selected breeds
+})
+
+function createBreedList(selectedBreeds){
+    for (const key in selectedBreeds) {
+        const li = document.createElement('li')
+        li.innerText = `${key}`
+        li.addEventListener("click", (e) => e.target.style.color = "red")
+        ul.appendChild(li)
+    };
