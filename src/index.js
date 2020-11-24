@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function(){
             const div = document.createElement('div')
             div.innerHTML = `<img src= ${image}>`
             container.appendChild(div)
-        })
+        });
     }
 
     function fetchBreeds(){
@@ -48,11 +48,10 @@ document.addEventListener('DOMContentLoaded', function(){
         const body = document.querySelector('body')
         const ul = document.querySelector('#dog-breeds')
         for (const key in json.message) { 
-        allBreeds.push(key)
-        }
-        console.log(allBreeds)
-        ul.innerHTML = createBreedList(allBreeds)
-
+            allBreeds.push(key)
+        };
+        console.log(allBreeds);
+        ul.innerHTML = createBreedList(allBreeds);
     }
 
     function createBreedList(selectedBreeds){
@@ -60,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function(){
         console.log(selectedBreeds)
         array = selectedBreeds.map(function(breed) {
             return `<li>${breed}</li>`
-        })
+        });
 
-        return array.join('')
+        return array.join('');
     }
 })
