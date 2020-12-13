@@ -1,25 +1,26 @@
-const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
-let dogImageContainer = document.getElementById('dog-image-container')
-let imgTag = document.createElement('img')
-
+// challenge 1
 
 document.addEventListener('DOMContentLoaded', function () {
-  fetchDogPics
-//    fetch("urlToDataSource")
-//    .then(function(response) { return response.json();})
-//   .then(function(json) { console.log(json) })
+
+  fetchDogPics()
+
+  function fetchDogPics() {
+    const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
+
+    fetch(imgUrl) // Pass in the url to the fetch for our image url
+    .then(resp => resp.json()) // convert the url to a json object
+    .then(json => { // call then again to ensure the promise works and then
+      //iterate over each element of the key 'message' on the json response.
+      json.message.forEach(link => {
+        let dogImageContainer = document.querySelector('#dog-image-container')
+        let imgTag = document.createElement('img')
+        
+        let tag = imgTag
+        tag.src = link
+        dogImageContainer.appendChild(tag)
+      })
+    })
+  };
+
 });
 
-function fetchDogPics() {
-    fetch(imgUrl) // Pass in the url to the fetch for our image url
-    .then(resp => resp.json()) // Get the json
-    .then(function(json) {
-      for (const elements of json) {
-        dogImageContainer.imgTag()
-      }
-    })
-} 
-
-function renderDocPictures(image) {
-
-}
