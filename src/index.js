@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   fetchDogPics()
+  fetchDogBreeds()
 
   function fetchDogPics() {
     const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
@@ -15,9 +16,26 @@ document.addEventListener('DOMContentLoaded', function () {
         let dogImageContainer = document.querySelector('#dog-image-container')
         let imgTag = document.createElement('img')
         
-        let tag = imgTag
-        tag.src = link
-        dogImageContainer.appendChild(tag)
+        imgTag.src = link
+        dogImageContainer.appendChild(imgTag)
+      })
+    })
+  };
+
+// challenge 2
+
+  function fetchDogBreeds() {
+    const breedUrl = 'https://dog.ceo/api/breeds/list/all'
+
+    fetch(breedUrl)
+    .then(resp => resp.json())
+    .then(json => { 
+      Object.keys(json.message).forEach(key => {
+        let dogBreedList = document.querySelector('#dog-breeds')
+        let liTag = document.createElement('li')
+        
+        liTag.innerHTML = key
+        dogBreedList.appendChild(liTag)
       })
     })
   };
