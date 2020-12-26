@@ -35,10 +35,29 @@ document.addEventListener('DOMContentLoaded', function () {
         let liTag = document.createElement('li')
         
         liTag.innerHTML = key
+        liTag.addEventListener('click',changeColorOnClick) // part of challenge 3
         dogBreedList.appendChild(liTag)
       })
     })
   };
+
+  // challenge 3
+
+  function changeColorOnClick(clickEvent) {
+    clickEvent.target.style.color = 'red';
+  }
+
+  // challenge 4
+
+  function addDropDownEventListener() {
+    let dropDown = document.getElementById('breed-dropdown')
+    dropDown.addEventListener('change',filterDogBreeds(event.target.value))
+  }
+
+  function filterDogBreeds(selectedLetter) {
+    // finish later
+  }
+
 
 });
 
