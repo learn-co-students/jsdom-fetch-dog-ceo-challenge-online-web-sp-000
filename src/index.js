@@ -32,9 +32,30 @@ function fetchDogBreeds() {
     .then(json => addDogBreeds(json));
 }  
 
+// I don't like how everything is in this one function. Would like to rework later
 function addDogBreeds(json) {
-    const dogBreedList = document.querySelector('#dog-breeds');
-    breeds = Object.keys(json.message);
-    console.log(breeds)
+    for (const key in json.message) {
+        let li = document.createElement('li')
+        let appendLi = document.querySelector('#dog-breeds').appendChild(li)
+        document.querySelector('#dog-breeds').appendChild(li).innerText = key
     
+        appendLi.addEventListener("click", function(e) {
+            e.target.style.color = "green"
+          })
+
+          document.querySelector('#breed-dropdown').addEventListener('change', function(e) {
+            letterFilter = document.querySelector("#breed-dropdown").value
+      
+            for (const key in json.message) {
+              if (key[0] === letterFilter) {
+                let ul = document.querySelector('ul')
+                ul.removeChild(ul.querySelector('li'))
+      
+                let li = document.createElement('li')
+                let appendLi = document.querySelector('#dog-breeds').appendChild(li)
+                document.querySelector('#dog-breeds').appendChild(li).innerHTML = key
+              }
+            }
+        })
+    }
 }
