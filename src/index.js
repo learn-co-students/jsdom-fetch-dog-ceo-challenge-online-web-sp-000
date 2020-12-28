@@ -1,14 +1,16 @@
 console.log('%c HI', 'color: firebrick')
-const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
-const breedUrl = 'https://dog.ceo/api/breeds/list/all'
+
+let breeds = [];
 
 
 document.addEventListener("DOMContentLoaded", function() {
     fetchDogs();
+    fetchDogBreeds();
 })
 
 function fetchDogs() {
-    fetch('https://dog.ceo/api/breeds/image/random/4')
+    const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
+    fetch(imgUrl)
     .then(resp => resp.json())
     .then(json => renderImages(json));
 }  
@@ -23,6 +25,16 @@ function renderImages(json) {
     })
 }
 
-fetch dogBreeds() {
+function fetchDogBreeds() {
+    const dogBreedUrl = "https://dog.ceo/api/breeds/list/all"
+    fetch(dogBreedUrl)
+    .then(resp => resp.json())
+    .then(json => addDogBreeds(json));
+}  
+
+function addDogBreeds(json) {
+    const dogBreedList = document.querySelector('#dog-breeds');
+    breeds = Object.keys(json.message);
+    console.log(breeds)
     
 }
