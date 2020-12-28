@@ -72,12 +72,6 @@ document.addEventListener("DOMContentLoaded", function(){
             createBreeds(filterBreedsArray);
         });
         
-
-        // if (string[0] == letter){
-        //     let breedItem = document.createElement('li');
-        //     breedItem.innerText = key;
-        //     breedList.appendChild(breedItem);
-        // }
     }
 
 
