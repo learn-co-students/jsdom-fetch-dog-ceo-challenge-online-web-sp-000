@@ -18,17 +18,44 @@ function loadImages() {
 }
 function newImage(image) {
     let container = document.getElementById('dog-image-container');
-    // console.log(container)
     let dogPicA = document.createElement('img');
-    // console.log(dogPicA)
     dogPicA.src = image
-    // console.log(image)   
+    container.append(dogPicA)
 }
- function loadBreeds(){
+function loadBreeds(){
     fetch(breedUrl)
     .then(results=> results.json())
     .then(results => {
         breeds = Object.keys(results.message);
-        console.log(breeds)
+        updateBreedList(breeds);
+        selectListener();
+           
 });
+
+function updateBreedList(breeds) {
+    let ul = document.querySelector('#dog-breeds');
+    breeds.forEach(breed => addBreed(breed));
+    
+   }
  }
+function addBreed(breed){
+    let ul = document.querySelector('#dog-breeds');
+    let li = document.createElement('li');
+    li.innerText = breed;
+    ul.appendChild(li)
+    li.addEventListener('click', () => {li.style.color='red'});
+    // console.log(breed)
+ }
+function selectListener() {
+let breedDropDown = document.getElementById('breed-dropdown');
+ debugger
+    breedDropDown.addEventListener('change', (event) => {
+        filterBreeds(event.target.value);
+         });
+
+}
+    
+function filterBreeds(letter){
+    updateBreedList(breeds.filter(breed => breed.startsWith(letter))
+    );
+}
