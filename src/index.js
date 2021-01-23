@@ -27,7 +27,7 @@ function loadBreeds() {
     .then(results => {
       breeds = Object.keys(results.message);
       updateBreedList(breeds);
-      addBreedSelectListener();
+      addBreedSelector();
     });
 }
 
@@ -50,7 +50,7 @@ function selectBreedsStartingWith(letter) {
   updateBreedList(breeds.filter(breed => breed.startsWith(letter)));
 }
 
-function addBreedSelectListener() {
+function addBreedSelector() {
   let breedDropdown = document.querySelector('#breed-dropdown');
   breedDropdown.addEventListener('change', function (event) {
     selectBreedsStartingWith(event.target.value);
