@@ -1,5 +1,3 @@
-let breeds = [];
-
 document.addEventListener('DOMContentLoaded', function () {
   loadImages();
   loadBreeds();
@@ -30,6 +28,8 @@ function loadBreeds() {
       addBreedSelector();
     });
 }
+
+let breeds = [];
 
 function updateBreedList(breeds) {
   let ul = document.querySelector('#dog-breeds');
