@@ -59,7 +59,6 @@ function dropDown(){
       }
     };
     removeChildren(ul)
-    newBreeds
     newBreeds.forEach(addBreeds)
   })
 }
