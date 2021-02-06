@@ -3,6 +3,7 @@ console.log('%c HI', 'color: firebrick')
 document.addEventListener("DOMContentLoaded", function(){
   loadImages();
   loadBreed();
+  dropDown();
 });
 
 function loadImages(){
@@ -41,25 +42,20 @@ function addBreeds(breed){
   });
 }
 
-// drop down function
-
 function dropDown(){
   const menu = document.getElementById('breed-dropdown');
-  menu.addEventListener('change', function(letter){
-    updateBreeds(breeds.filter(breed => breed.startsWith(letter)))
-  })
-}
+  let list = document.querySelectorAll('li');
 
-function updateBreeds(breeds){
-  let ul = document.querySelector('#dog-breeds');
-  removeChildren(ul);
-  breeds.forEach(breed => addBreed(breed));
-}
+  menu.addEventListener('change', function(){
+    for (const key in list){
+      let e = list[key];
+      let firstLetter = e.innerHTML.charAt(0);
 
-function removeChildren(ul) {
-  let child = ul.lastElementChild;
-  while (child) {
-    ul.removeChild(child);
-    child = ul.lastElementChild;
-  }
+      if (menu.value === firstLetter){
+        e.style.display = ""
+      } else {
+        e.style.display = "none"
+      }
+    }
+  });
 }
