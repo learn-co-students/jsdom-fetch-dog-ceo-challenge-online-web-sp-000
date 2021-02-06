@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function(){
   dropDown();
 });
 
+let breeds = [];
+
 function loadImages(){
   const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
   fetch(imgUrl)
@@ -42,20 +44,28 @@ function addBreeds(breed){
   });
 }
 
+
+
 function dropDown(){
+  const ul = document.getElementById('dog-breeds');
   const menu = document.getElementById('breed-dropdown');
-  let list = document.querySelectorAll('li');
-
   menu.addEventListener('change', function(){
-    for (const key in list){
-      let e = list[key];
-      let firstLetter = e.innerHTML.charAt(0);
+    let newBreeds = [];
 
-      if (menu.value === firstLetter){
-        e.style.display = ""
-      } else {
-        e.style.display = "none"
+    for(const element of breeds){
+      let letter = element.charAt(0);
+      if (menu.value === letter){
+        newBreeds.push(element);
       }
-    }
-  });
+    };
+    removeChildren(ul)
+    newBreeds
+    newBreeds.forEach(addBreeds)
+  })
+}
+
+function removeChildren(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
 }
