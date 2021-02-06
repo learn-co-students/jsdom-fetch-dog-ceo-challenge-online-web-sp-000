@@ -44,8 +44,6 @@ function addBreeds(breed){
   });
 }
 
-
-
 function dropDown(){
   const ul = document.getElementById('dog-breeds');
   const menu = document.getElementById('breed-dropdown');
