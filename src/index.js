@@ -43,6 +43,17 @@ function renderBreeds(breeds) {
   }
 }
     
+function selectBreed() {
+  const breedDropdown = document.querySelector('#breed-dropdown');
+  breedDropdown.addEventListener('change', function (event) {
+    selectBreedsStartingWith(event.target.value);
+  });
+}
+
+function selectBreedsStartingWith(letter) {
+  updateBreeds(breeds.filter(breed => breed.startsWith(letter)));
+}
+
 function updateBreeds(breeds) {
   let ul = document.getElementById("dog-breeds");
   removeChildren(ul);
@@ -55,17 +66,6 @@ function removeChildren(element) {
     element.removeChild(child);
     child = element.lastElementChild;
   }
-}
-
-function selectBreed() {
-  const breedDropdown = document.querySelector('#breed-dropdown');
-  breedDropdown.addEventListener('change', function (event) {
-    selectBreedsStartingWith(event.target.value);
-  });
-}
-
-function selectBreedsStartingWith(letter) {
-  updateBreeds(breeds.filter(breed => breed.startsWith(letter)));
 }
 
 function changeColor(event) {
