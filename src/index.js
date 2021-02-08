@@ -1,8 +1,5 @@
-console.log('%c HI', 'color: firebrick')
-
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4";
 const breedUrl = "https://dog.ceo/api/breeds/list/all";
-let allBreedsArray = []
 
 document.addEventListener("DOMContentLoaded", function() {
   fetchImages();
@@ -44,7 +41,7 @@ function renderBreeds(breeds) {
 }
     
 function selectBreed() {
-  const breedDropdown = document.querySelector('#breed-dropdown');
+  const breedDropdown = document.getElementById("breed-dropdown");
   breedDropdown.addEventListener('change', function (event) {
     selectBreedsStartingWith(event.target.value);
   });
@@ -57,7 +54,7 @@ function selectBreedsStartingWith(letter) {
 function updateBreeds(breeds) {
   let ul = document.getElementById("dog-breeds");
   removeChildren(ul);
-  breeds.forEach(breed => renderBreeds(breed));
+  renderBreeds(breeds);
 }
 
 function removeChildren(element) {
