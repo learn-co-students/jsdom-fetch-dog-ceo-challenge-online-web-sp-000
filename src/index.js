@@ -15,6 +15,14 @@ console.log('%c HI', 'color: firebrick');
 
 
 //CHALLENGE 1:
+let breeds = [];
+
+document.addEventListener('DOMContentLoaded', function () {
+  loadImages();
+  loadBreedOptions();
+});
+
+function loadImages() {
 //loads index.js file
 const imgURL = "https://dog.ceo/api/breeds/image/random/4";
 
@@ -23,6 +31,7 @@ fetch(imgURL)
   //returns json structure
   .then(resp => resp.json())
   .then(resp => resp.message.forEach(image => addImage(image)));
+}
 
 //this function is grabbing elements and adding to the DOM
 function addImage(dogPicUrl) {
@@ -50,7 +59,16 @@ function loadBreedOptions() {
   //here we are iterating through breeds
   function updateBreedList(breeds){
     let ul = document.querySelector('#dog-breeds');
+    removeChildren(ul);
     breeds.forEach(breed => addBreed(breed));
+  }
+
+  function removeChildren(element){
+    let child = element.lastElementChild;
+    while (child) {
+      element.removeChild(child);
+      child = element.lastElementChild;
+    }
   }
 
   //adding breed into list ul
