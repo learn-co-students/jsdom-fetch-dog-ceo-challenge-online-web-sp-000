@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function(){renderDogImages(), renderDogBreeds()})
+
 console.log('%c HI', 'color: firebrick')
 
 function fetchDogs(urlToUse,whatToReturn){
@@ -22,8 +24,8 @@ function renderDogImages(){
 // fetch('https://dog.ceo/api/breeds/list/all').then(function(response){return response.json()}).then(function(json){console.log(json.message)})
 
 function renderDogBreeds(){
-    let urlToUse = 'https://dog.ceo/api/breeds/list/all'
-    let whatToReturn = function(json){for(const objectKey in json.message){
+    const urlToUse = 'https://dog.ceo/api/breeds/list/all'
+    const whatToReturn = function(json){for(const objectKey in json.message){
         let dogBreed = document.createElement('li'); 
         dogBreed.innerText = objectKey
         document.getElementById('dog-breeds').appendChild(dogBreed)
@@ -36,7 +38,7 @@ function colorChange() {
     // this.style.color = '#7B68EE'
 }
 
-document.addEventListener('DOMContentLoaded', function(){renderDogImages(), renderDogBreeds()})
+
 // document.getElementById('dog-breeds').forEach(listItem => {listItem.addEventListener('click', colorChange)})
 // for(const listItem of document.getElementsByTagName('li')) {listItem.addEventListener('click', function(){console.log(listItem)})}
 for(const listItem of document.getElementsByTagName('li')) {console.log(listItem)}
