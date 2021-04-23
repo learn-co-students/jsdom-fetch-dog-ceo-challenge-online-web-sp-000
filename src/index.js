@@ -4,6 +4,8 @@ console.log('%c HI', 'color: firebrick')
 document.addEventListener('DOMContentLoaded', function() { 
     fetchImages();
     fetchBreeds();
+    breedSelectListener();
+    loadBreedOptions();
 });
 
 function fetchImages() { 
@@ -54,10 +56,13 @@ fetch('https://dog.ceo/api/breeds/image/random/4')
 
   }
 
-  document.getElementById("breed-dropdown").addEventListener("change", () => { 
-      sortedBreeds(this.value);
+  function breedSelectListener() {
+  let dropdownBox = document.getElementById("breed-dropdown");
+  dropdownBox.addEventListener("change", (e) => { 
+      sortedBreeds(e.target.value);
       //put out sorted breed array elements to the dom in the ul that holds dog breeds. make this ul have the sorted breeds instead. 
    } )
+}
 
    function sortedBreeds(letter) { 
     let breedList = document.querySelector("ul").children;
@@ -68,3 +73,17 @@ fetch('https://dog.ceo/api/breeds/image/random/4')
     });
     breedNameArray.filter((breed) => breed.startsWith(letter)); 
    }
+
+   function loadBreedOptions() { 
+    fetch('https://dog.ceo/api/breeds/list/all')
+    .then(resp => resp.json())
+    .then(json => renderBreeds(json))
+
+    for (const breed in breedSelectListener()) { 
+        let body = document.querySelector('body');
+        let ul = document.getElementById('dog-breeds');
+        let li = document.createElement('li');
+        li.innerText = `${breed}`;
+        ul.appendChild(li);
+   }
+};
