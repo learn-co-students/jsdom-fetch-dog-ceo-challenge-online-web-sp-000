@@ -1,5 +1,6 @@
 console.log('%c HI', 'color: firebrick')
 
+
 document.addEventListener('DOMContentLoaded', function() { 
     fetchImages();
     fetchBreeds();
@@ -42,6 +43,7 @@ fetch('https://dog.ceo/api/breeds/image/random/4')
 
   function changeColor() { 
     let breedList = document.querySelector("ul").children;
+
     let breedArray = [...breedList];
 
       breedArray.forEach(breed => {
@@ -51,3 +53,18 @@ fetch('https://dog.ceo/api/breeds/image/random/4')
       });
 
   }
+
+  document.getElementById("breed-dropdown").addEventListener("change", () => { 
+      sortedBreeds(this.value);
+      //put out sorted breed array elements to the dom in the ul that holds dog breeds. make this ul have the sorted breeds instead. 
+   } )
+
+   function sortedBreeds(letter) { 
+    let breedList = document.querySelector("ul").children;
+    let breedArray = [...breedList];
+
+    let breedNameArray = breedArray.map(function(element) {
+    return element.innerText;
+    });
+    breedNameArray.filter((breed) => breed.startsWith(letter)); 
+   }
