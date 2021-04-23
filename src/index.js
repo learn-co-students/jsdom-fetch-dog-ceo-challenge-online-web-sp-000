@@ -1,1 +1,53 @@
 console.log('%c HI', 'color: firebrick')
+
+document.addEventListener('DOMContentLoaded', function() { 
+    fetchImages();
+    fetchBreeds();
+});
+
+function fetchImages() { 
+fetch('https://dog.ceo/api/breeds/image/random/4')
+  .then(resp => resp.json())
+  .then(json => renderImages(json))
+}
+
+  function renderImages(images) { 
+      images.message.forEach(image => { 
+        let imageElement = document.createElement('img');
+        imageElement.src = image;
+        let div = document.getElementById('dog-image-container');
+        div.appendChild(imageElement);
+      });
+
+  }
+
+  function fetchBreeds() { 
+      fetch('https://dog.ceo/api/breeds/list/all')
+      .then(resp => resp.json())
+      .then(json => renderBreeds(json))
+  }
+
+  function renderBreeds(breeds) { 
+      let body = document.querySelector('body');
+      for (const breed in breeds.message) { 
+          let body = document.querySelector('body');
+          let ul = document.getElementById('dog-breeds');
+          let li = document.createElement('li');
+          li.innerText = `${breed}`;
+          ul.appendChild(li);
+      }
+      changeColor();
+  }
+
+
+  function changeColor() { 
+    let breedList = document.querySelector("ul").children;
+    let breedArray = [...breedList];
+
+      breedArray.forEach(breed => {
+          breed.addEventListener('click', () => { 
+            breed.style.color = "green"
+          });
+      });
+
+  }
