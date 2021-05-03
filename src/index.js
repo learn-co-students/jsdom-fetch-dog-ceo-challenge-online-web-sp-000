@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", e => {
             let breeds = document.getElementById('dog-breeds').querySelectorAll('li')
             for (let i = 0; i < breeds.length; i++) {
                 let listItem = breeds[i]
-                if (listItem.textContent.startsWith(target)) {
+                if (target === 'all' || listItem.textContent.startsWith(target)) {
                     listItem.style.display = ''
                 } else {
                     listItem.style.display = 'none'
