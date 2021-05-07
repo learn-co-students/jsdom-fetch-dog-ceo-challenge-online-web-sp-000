@@ -2,9 +2,10 @@ console.log('%c HI', 'color: firebrick')
 
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
 const breedUrl = 'https://dog.ceo/api/breeds/list/all'
+let allBreeds = []
 
 document.addEventListener('DOMContentLoaded', function() {
-  apiCallDogs(), apiCallBreeds()
+  apiCallDogs(), apiCallBreeds(), breedDropDown()
 })
 
 function apiCallDogs() {
@@ -36,6 +37,7 @@ function apiCallBreeds() {
 function displayBreeds(breeds) {
   const uList = document.getElementById('dog-breeds')
   for (const breed in breeds["message"]) {
+    allBreeds.push(breed)
     const li = document.createElement('li')
     li.innerHTML = breed
     uList.appendChild(li)
@@ -55,10 +57,10 @@ function breedDropDown() {
 }
 
 function selectBreedsStartingWith(letter) {
-  updateBreeds(breeds.filter(breed => breed.startsWith(letter)));
+  updateBreeds(allBreeds.filter(breed => breed.startsWith(letter)));
 }
 
-function updateBreeds() {
+function updateBreeds(breeds) {
   let ul = document.querySelector('#dog-breeds');
   removeChildren(ul);
   breeds.forEach(breed => addBreed(breed));
@@ -70,4 +72,12 @@ function removeChildren(element) {
     element.removeChild(child);
     child = element.lastElementChild;
   }
+}
+
+function addBreed(breed) {
+  const uList = document.getElementById('dog-breeds')
+  const li = document.createElement('li')
+  li.innerHTML = breed
+  uList.appendChild(li)
+  li.addEventListener('click', changeColor)
 }
