@@ -27,4 +27,51 @@ function addImg(image) {
     // shove the <img src="image"> into the tag with the right class
 };
 
+function loadBreeds() {
+    const breedURL = "https://dog.ceo/api/breeds/list/all";
+    // URL with the goods 
+    fetch(breedURL).then(res => res.json()).then (
+        results => {
+            breeds = Object.keys(results.message);
+            // assigns the results as keys in a new 'breeds' object
+
+        });
+}
+
+function updateBreeds(breeds) {
+    let ul = document.querySelector("#dog-breeds");
+    // select the right element, remember the # for the class tag
+    //ul.children.forEach(child => child.delete?)
+    //no
+    removeChildren(ul);
+    // clear out the list
+    breeds.forEach(breed => addBreed(breed));
+    // iterate over teh array and add each one again
+}
+
+function addBreed(breed) {
+// remember you have to do this the long way around. annoying, isn't it.
+    let ul = document.querySelector('#dog-breeds');
+    //choose the ul class tag that has all the breeds in it, it's the same as in update
+    let li = document.createElement('li');
+    li.innerText = breed;
+    ul.appendChild(li);
+    li.addEventListener('click', changeColor);
+}
+
+function removeChild(el) {
+    let child = el.lastElementChild;
+    while (child) {
+        el.removeChild(child);
+        child = el.lastElementChild;
+        // As long as there is a child element, grab the next child of the element and bahleet it. 
+    }
+}
+
+function changeColor(click) {
+    click.target.style.color = 'lightblue';
+}
+
+
+
 
