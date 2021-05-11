@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function loadImage(){
 
 	const imgUrl= "https://dog.ceo/api/breeds/image/random/4"
@@ -8,7 +9,7 @@ function loadImage(){
 
 function addImage(dogPicUrl){
 
- let container= document.querrySelector(#dog-image-container);
+ let container= document.querrySelector('#dog-image-container');
  let newImageEl= document.createElement('img');
  newImageEl.src= dogPicUrl;
  container.appendChild(newImageEl);
@@ -32,8 +33,9 @@ function loadBreedOption() {
 	function updateBreedList(breeds) {
 		let ul = document.querySelector('#dog-breeds');
 		removeChildren(ul);
-		breeds.forEach(breed=>addBreed(breed);
+		breeds.forEach(breed=>addBreed(breed));
 			
 		// body...
 	}
 }
+
